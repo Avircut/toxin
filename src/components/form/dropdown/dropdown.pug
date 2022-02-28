@@ -1,0 +1,12 @@
+mixin dropdown(dropDown)
+    .dropdown
+        label(class=`${dropDown.formClass}__label label ${dropDown.labelClass}`)=dropDown.labelText
+            if(dropDown.alternateText!='')
+                span(class=`${dropDown.formClass}__label_alternate label_alternate ${dropDown.altClass}`)=dropDown.alternateText
+            input(class=`${dropDown.formClass}__text-field text-field dropdown`, type="text", placeholder=`${dropDown.placeholder}`, value=dropDown.value, readonly)
+            .dropdown__expand-button
+            each item in dropDown.items
+                .dropdown__item=item
+                    .dropdown__minus-btn
+                    .dropdown__amount 0
+                    .dropdwon__plus-btn

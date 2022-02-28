@@ -1,4 +1,5 @@
-mixin text-field(formClass, labelText, alternateText, placeholder, value)
-    label(class=`${formClass}__label label`)=labelText
-        span(class=`${formClass}__label_alternate label_alternate`)=alternateText
+mixin text-field(formClass, labelText, alternateText, placeholder, value, labelClass, altClass)
+    label(class=`${formClass}__label label ${labelClass}`)=labelText
+        if(alternateText!='')
+            span(class=`${formClass}__label_alternate label_alternate ${altClass}`)=alternateText
         input(class=`${formClass}__text-field text-field`, type="text", placeholder=`${placeholder}`, value=value)
