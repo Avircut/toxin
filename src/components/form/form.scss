@@ -1,7 +1,7 @@
-@import url(./label/label.scss);
-@import url(./label/alternate-label/alternate-label.scss);
-@import url(./text-field/text-field.scss);
-@import url(./default-text-field-form/default-text-field-form.scss);
+@use './label/label';
+@use './label/alternate-label/alternate-label';
+@use './text-field/text-field';
+@use './default-text-field-form/default-text-field-form';
 
 .form{
     display: flex;

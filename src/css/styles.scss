@@ -1,13 +1,6 @@
-@import url(../components/form/form.scss);
-@import url(../components/logo/logo.scss);
-$dark_shade100: '#1F2041';
-$dark_shade75: rgba(31,32,65,.75);
-$dark_shade50: rgba(31,32,65,.50);
-$dark_shade25: rgba(31,32,65,.25);
-$dark_shade5: rgba(31,32,65,.5);
-$purple: '#BC9CFF';
-$green: '#6FCF97';
-
+@use '../components/form/form';
+@use '../components/logo/logo';
+@use '../components/variables.scss' as var;
 
 @font-face {
   font-family: Montserrat;
@@ -27,14 +20,14 @@ h1{
   font-size:2.4rem;
   line-height: 2.9rem;
   font-weight: bold;
-  color:$dark_shade100;
+  color:var.$dark_shade100;
 }
 h2{
   font-family: Montserrat, Arial, sans-serif;
   font-size:1.9rem;
   line-height: 2.3rem;
   font-weight: bold;
-  color:$dark_shade100;
+  color:var.$dark_shade100;
 }
 h3{
   text-transform: uppercase;
@@ -42,14 +35,14 @@ h3{
   font-size:1.2rem;
   line-height: 1.5rem;
   font-weight: bold;
-  color:$dark_shade100;
+  color:var.$dark_shade100;
 }
 body{
   font-family: Montserrat, Arial, sans-serif;
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 2.4rem;
-  color:$dark_shade75;
+  color:var.$dark_shade75;
   margin: 0 auto;
   max-width: 144rem;
   position: relative;

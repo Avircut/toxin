@@ -1,5 +1,7 @@
+@use '../../../variables.scss' as var;
+
 .label_alternate{
-    color:$dark_shade50;
+    color:var.$dark_shade50;
     font-weight: 400;
     float:right;
   }
