@@ -1,0 +1,23 @@
+.text-field{ 
+    margin-top:.5rem;
+    padding:1.3rem 1.5rem;
+    font-size:1.4rem;
+    line-height:1.8rem;
+    width:32rem;
+    height:4.4rem;
+    background: #FFFFFF;
+    border: 1px solid $dark_shade25;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    &::placeholder{
+      color:$dark_shade25;
+    }
+    &:hover, &:focus{
+      outline:none;
+      background: #FFFFFF;
+      border: 1px solid $dark_shade50;
+      box-sizing: border-box;
+      border-radius: 4px;
+    }
+}

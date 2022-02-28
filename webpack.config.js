@@ -15,7 +15,7 @@ const PATHS = {
     dist:path.join(__dirname,'../dist')
 }
 
-const PAGES_DIR = path.resolve(__dirname,'src/pug/pages')
+const PAGES_DIR = path.resolve(__dirname,'src/pages')
 const PAGES = fs.readdirSync(PAGES_DIR).filter(filename=>filename.endsWith('.pug'))
 
 const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
@@ -65,7 +65,7 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns:[
                 {
-                    from: path.resolve(__dirname,'src/favicon-32x32.png'),
+                    from: path.resolve(__dirname,'src/assets/images/favicon-32x32.png'),
                     to:path.resolve(__dirname,'dist')
                 }
             ]
