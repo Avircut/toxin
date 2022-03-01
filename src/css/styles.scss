@@ -3,6 +3,10 @@
 @use '../components/variables.scss' as var;
 
 @font-face {
+  font-family: 'Material Icons';
+  src: url(../assets/fonts/MaterialIcons-Regular.ttf);
+}
+@font-face {
   font-family: Montserrat;
   src: url(../assets/fonts/Montserrat-Regular.ttf);
   font-weight: 400;

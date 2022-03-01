@@ -2,9 +2,7 @@
 
 .text-field{ 
     font-family: Montserrat, Arial, sans-serif;
-    margin-top:.5rem;
     color:var.$dark_shade75;
-    padding:1.3rem 1.5rem;
     font-size:1.4rem;
     line-height:1.8rem;
     width:32rem;
@@ -13,7 +11,9 @@
     border: 1px solid var.$dark_shade25;
     box-sizing: border-box;
     border-radius: 4px;
+    margin-top:.5rem;
     margin-bottom: 2rem;
+    padding:1.3rem 1.5rem;
     &::placeholder{
       color:var.$dark_shade25;
     }
