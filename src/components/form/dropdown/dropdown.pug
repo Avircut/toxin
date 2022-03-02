@@ -1,14 +1,23 @@
 mixin dropdown(dropDown)
+    if(typeof(dropDown.labelClass) == 'undefined') 
+        -dropDown.labelClass=''
+    if(typeof(dropDown.alternateText) == 'undefined') 
+        -dropDown.alternateText=''
+    if(typeof(dropDown.altClass) == 'undefined') 
+        -dropDown.altClass=''
+    if(typeof(dropDown.placeholder) == 'undefined') 
+        -dropDown.placeholder=''
+    if(dropDown.items.length == 0) 
+        -dropDown.items = []                
     label(class=`${dropDown.formClass}__label label ${dropDown.labelClass}`)=dropDown.labelText
         if(dropDown.alternateText!='')
             span(class=`${dropDown.formClass}__label_alternate label_alternate ${dropDown.altClass}`)=dropDown.alternateText
         details(class=`${dropDown.formClass}__dropdown dropdown`)
             summary=dropDown.placeholder
-            ul.dropdown__item-container.item-container
+            .dropdown__item-container.item-container
                 each item in dropDown.items
-                    .dropdown__item
+                    .dropdown__item.item
                         span.dropdown__item-content.item-content=item
-                        .dropdown__plus-btn.plus-btn.btn.btn_disabled +
+                        .dropdown__plus-btn.plus-btn.btn +
                         .dropdown__amount.amount 0
                         .dropdown__minus-btn.minus-btn.btn.btn_disabled -
-

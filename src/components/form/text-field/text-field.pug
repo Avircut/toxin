@@ -1,5 +1,13 @@
-mixin text-field(formClass, labelText, alternateText, placeholder, value, labelClass, altClass)
-    label(class=`${formClass}__label label ${labelClass}`)=labelText
-        if(alternateText!='')
-            span(class=`${formClass}__label_alternate label_alternate ${altClass}`)=alternateText
-        input(class=`${formClass}__text-field text-field`, type="text", placeholder=`${placeholder}`, value=value)
+mixin text-field(textField)
+    if(typeof(textField.labelClass) == 'undefined') 
+        -textField.labelClass=''
+    if(typeof(textField.altClass) == 'undefined') 
+        -textField.altClass=''
+    if(typeof(textField.placeholder) == 'undefined') 
+        -textField.placeholder=''
+    if(typeof(textField.value) == 'undefined') 
+        -textField.value=''
+    label(class=`${textField.formClass}__label label ${textField.labelClass}`)=textField.labelText
+        if(textField.alternateText!='')
+            span(class=`${textField.formClass}__label_alternate label_alternate ${textField.altClass}`)=textField.alternateText
+        input(class=`${textField.formClass}__text-field text-field`, type="text", placeholder=`${textField.placeholder}`, value=textField.value)

@@ -2,6 +2,7 @@ class Dropdown{
   constructor(el) {
     this.el = el;
     this.summary = el.querySelector('summary');
+    this.defaultplaceholder = el.querySelector('summary').innerHTML;
     this.content = el.querySelector('.item-container');
     this.plusBtns = el.querySelectorAll('.plus-btn');
     this.minusBtns = el.querySelectorAll('.minus-btn');
@@ -33,19 +34,21 @@ class Dropdown{
     }
   }
   onItemPlusClick(e){
+    let classes = e.target.className;
+    if (classes.indexOf('btn_disabled')>0) return;
     const item = e.target.parentNode;
-    console.log(item);
     const itemText = item.querySelector('.item-content').innerHTML;
     let itemAmount = item.querySelector('.amount').innerHTML;
     const minusBtn = item.querySelector('.minus-btn');
     const plusBtn = item.querySelector('.plus-btn');
     item.querySelector('.amount').innerHTML = `${++itemAmount}`;
-    console.log(itemAmount);
     if (itemAmount === 1) minusBtn.classList.toggle('btn_disabled'); 
     if (itemAmount === 4) plusBtn.classList.toggle('btn_disabled');
     this.placeholderUpdate();
   }
   onItemMinusClick(e){
+    let classes = e.target.className;
+    if (classes.indexOf('btn_disabled')>0) return;
     const item = e.target.parentNode;
     const itemText = item.querySelector('.item-content').innerHTML;
     let itemAmount = item.querySelector('.amount').innerHTML;
@@ -53,7 +56,7 @@ class Dropdown{
     const plusBtn = item.querySelector('.plus-btn');
     item.querySelector('.amount').innerHTML = `${--itemAmount}`;
     if (itemAmount === 0) minusBtn.classList.toggle('btn_disabled'); 
-    if (itemAmount === 3) plusBtn.classList.toggle('btn_disabled'); // TODO(Avircut): Add disabled button functionality
+    if (itemAmount === 3) plusBtn.classList.toggle('btn_disabled');
     this.placeholderUpdate();
   }
   shrink() {
@@ -110,16 +113,36 @@ class Dropdown{
 
     this.el.style.height = this.el.style.overflow = '';
   }
-  placeholderUpdate(){// TODO(Avircut): Добавить окончания для слов в зависимости от цифры
+  placeholderUpdate(){
     const items = [...this.el.querySelectorAll('.item-content')];
     const amounts = [...this.el.querySelectorAll('.amount')];
     let placeholderWords = items.map(o => o.innerHTML);
     let placeholderNumbers = amounts.map(o => o.innerHTML);
     this.summary.innerHTML='';
     for(let i=0; i<items.length;i++){
-      if(placeholderNumbers[i]!=0) this.summary.innerHTML+=' ' + placeholderNumbers[i] +' '+ placeholderWords[i];
-      if(i < items.length - 1) this.summary.innerHTML+=',';
+      let lastnum = placeholderNumbers[i].substring(placeholderNumbers[i].length-1);
+      switch (placeholderWords[i]){
+        case 'спальни':{
+          if(lastnum === '1') placeholderWords[i] = 'спальня';
+          break;
+        }
+        case 'кровати':{
+          if (lastnum === '1') placeholderWords[i] = 'кровать';
+          break;
+        }
+        case 'ванные комнаты':{
+          if (lastnum === '1') placeholderWords[i] = 'ванная комната';
+          break;
+        }
+      }
+      if (placeholderNumbers[i] != 0){
+        this.summary.innerHTML+=placeholderNumbers[i] +' '+ placeholderWords[i];
+        if (i < items.length - 1) this.summary.innerHTML+=', ';
+      } 
+      
     }
+    this.summary.innerHTML = this.summary.innerHTML.substring(0,this.summary.innerHTML.length-2);
+    if(this.summary.innerHTML === '') this.summary.innerHTML = this.defaultplaceholder;
   }
 }
 document.querySelectorAll('.dropdown').forEach((el) => {

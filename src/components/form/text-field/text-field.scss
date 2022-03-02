@@ -12,16 +12,12 @@
     box-sizing: border-box;
     border-radius: 4px;
     margin-top:.5rem;
-    margin-bottom: 2rem;
     padding:1.3rem 1.5rem;
     &::placeholder{
       color:var.$dark_shade25;
     }
     &:hover, &:focus{
       outline:none;
-      background: #FFFFFF;
       border: 1px solid var.$dark_shade50;
-      box-sizing: border-box;
-      border-radius: 4px;
     }
 }
