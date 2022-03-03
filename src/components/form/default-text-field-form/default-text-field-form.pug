@@ -1,9 +1,12 @@
 include ../text-field/text-field.pug
 include ../dropdown/dropdown
--const dropdown = {formClass:'default-text-field-form', labelClass:'dropdown-label', labelText:'Dropdown', placeholder:'Сколько гостей', items:['спальни','кровати','ванные комнаты']}
+include ../dropdown/date-dropdown/date-dropdown
+-const formClass = 'default-text-field-form';
+-const dropdown = {formClass: `${formClass}`, labelClass:'dropdown-label', labelText:'Dropdown', placeholder:'Сколько гостей', items:['спальни','кровати','ванные комнаты']}
 mixin default-text-field-form()
     form.default-text-field-form.form
-        +text-field({formClass:'default-text-field-form', labelText: 'text field', alternateText: 'default', placeholder: 'Email', altClass: 'mt-3'})
-        +text-field({formClass: 'default-text-field-form', labelText: 'text field', alternateText: 'Hover / focus', value: 'This is pretty awesome'})
+        +text-field({formClass: `${formClass}`, labelText: 'text field', alternateText: 'default', placeholder: 'Email', altClass: 'mt-3'})
+        +text-field({formClass: `${formClass}`, labelText: 'text field', alternateText: 'Hover / focus', value: 'This is pretty awesome'})
         +dropdown(dropdown)
-        +text-field({formClass:'default-text-field-form', labelText: 'masked text field',placeholder:'ДД.ММ.ГГГГ', labelClass:'masked'})
+        +text-field({formClass: `${formClass}`, labelText: 'masked text field',placeholder:'ДД.ММ.ГГГГ', labelClass:'masked'})
+        +date-dropdown({formClass: `${formClass}`, firstLabelText:'date dropdown', secondLabelText:'date dropdown', firstPlaceholder:'ДД.ММ.ГГГГ', secondPlaceholder:'19.08.2019'})

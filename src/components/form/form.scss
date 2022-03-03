@@ -3,6 +3,7 @@
 @use './text-field/text-field';
 @use './default-text-field-form/default-text-field-form';
 @use './dropdown/dropdown';
+@use './dropdown/date-dropdown/date-dropdown';
 
 .form{
     display: flex;

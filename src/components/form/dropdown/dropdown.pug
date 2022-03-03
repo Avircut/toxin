@@ -1,5 +1,5 @@
 mixin dropdown(dropDown)
-    if(typeof(dropDown.labelClass) == 'undefined') 
+    if(typeof(dropDown.labelClass) == 'undefined' || dropDown.labelClass=='undefined') 
         -dropDown.labelClass=''
     if(typeof(dropDown.alternateText) == 'undefined') 
         -dropDown.alternateText=''
@@ -15,9 +15,12 @@ mixin dropdown(dropDown)
         details(class=`${dropDown.formClass}__dropdown dropdown`)
             summary=dropDown.placeholder
             .dropdown__item-container.item-container
-                each item in dropDown.items
-                    .dropdown__item.item
-                        span.dropdown__item-content.item-content=item
-                        .dropdown__plus-btn.plus-btn.btn +
-                        .dropdown__amount.amount 0
-                        .dropdown__minus-btn.minus-btn.btn.btn_disabled -
+                if (typeof(dropDown.items) == 'object')
+                    each item in dropDown.items
+                        .dropdown__item.item
+                            span.dropdown__item-content.item-content=item
+                            .dropdown__plus-btn.plus-btn.btn +
+                            .dropdown__amount.amount 0
+                            .dropdown__minus-btn.minus-btn.btn.btn_disabled -
+                else if (dropDown.items == 'data-picker1')
+                    .dropdown__datepicker

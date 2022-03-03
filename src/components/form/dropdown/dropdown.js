@@ -1,3 +1,4 @@
+import './date-dropdown/date-dropdown'
 class Dropdown{
   constructor(el) {
     this.el = el;
@@ -26,6 +27,12 @@ class Dropdown{
   }
   onClick(e) {
     e.preventDefault();
+    if (this.el.querySelectorAll('.item-container>*').length < 1){ // Отключение раскрытия элемента, если у него нет потомков.
+      let clickevent = new Event('click');
+      const firstDropdown = this.el.parentNode.parentNode.querySelector('.dropdown>summary');
+      firstDropdown.dispatchEvent(clickevent);
+      return;
+    }
     if (this.isClosing || !this.el.open){
       this.open();
     } else {
@@ -54,7 +61,7 @@ class Dropdown{
     const minusBtn = item.querySelector('.minus-btn');
     const plusBtn = item.querySelector('.plus-btn');
     item.querySelector('.amount').innerHTML = `${--itemAmount}`;
-    if (itemAmount === 0) minusBtn.classList.toggle('btn_disabled'); 
+    if (itemAmount === 0) minusBtn.classList.toggle('btn_disabled');
     if (itemAmount === 3) plusBtn.classList.toggle('btn_disabled');
     this.placeholderUpdate();
   }

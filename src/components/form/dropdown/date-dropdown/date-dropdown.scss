@@ -1,0 +1,56 @@
+.date-dropdown{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &>.label>.dropdown{
+    width:15rem;
+  }
+}
+.air-datepicker{
+  display:grid;
+  grid-template-rows: 20% 80%;
+  &--navigation{
+    height:3rem;
+  }
+  &-nav{
+    display: grid;
+    width:100%;
+    grid-template-columns: 10% 80% 10%;
+    &--title{
+      text-align: center;
+      line-height: 3rem;
+    }
+    &--action{
+      text-align: center;
+      &>svg{
+        width:3rem;
+        height:3rem;
+      }
+    }
+  }
+  &-body--day-names{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  &-body--cells{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  &-cell{
+    border-radius: 4px;
+    flex: 1 0 14%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  &--pointer{
+    display: none;
+  }
+}

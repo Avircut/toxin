@@ -1,0 +1,5 @@
+include ../dropdown
+mixin date-dropdown(dateDropdown)
+  div(class=`${dateDropdown.formClass}__date-dropdown date-dropdown`)
+    +dropdown({formClass:`${dateDropdown.formClass}`,labelClass:`${dateDropdown.labelClass}`,labelText:`${dateDropdown.firstLabelText}`, placeholder:`${dateDropdown.firstPlaceholder}`,items:'data-picker1'})
+    +dropdown({formClass:`${dateDropdown.formClass}`,labelClass:`${dateDropdown.labelClass}`,labelText:`${dateDropdown.secondLabelText}`, placeholder:`${dateDropdown.secondPlaceholder}`,items:'data-picker2'})
