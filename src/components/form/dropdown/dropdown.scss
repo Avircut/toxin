@@ -15,6 +15,7 @@
   border: 1px solid var.$dark_shade25;
   box-sizing: border-box;
   border-radius: 4px;
+  position: relative;
   &::placeholder{
     color:var.$dark_shade25;
   }
@@ -87,12 +88,14 @@ summary{
   cursor:pointer;
 }
 .item-container{
+  position: absolute;
+  top:100%;
+  left:0;
+  z-index: 2;
   user-select: none;
   cursor:default;
-  margin-block-start: 0;
   max-height:20rem;
   width:32rem;
-  padding-inline-start: 0;
   display: flex;
   flex-direction: column;
   outline:none;

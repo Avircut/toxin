@@ -26,7 +26,6 @@ class Dropdown{
   }
   onClick(e) {
     e.preventDefault();
-    this.el.style.overflow = 'hidden';
     if (this.isClosing || !this.el.open){
       this.open();
     } else {
@@ -61,15 +60,16 @@ class Dropdown{
   }
   shrink() {
     this.isClosing = true;
-    const startHeight = `${this.el.offsetHeight}px`;
-    const endHeight = `${this.summary.offsetHeight}px`;
+    const startHeight = `${this.content.offsetHeight}px`;
+    const endHeight = `0px`;
     this.el.style.borderBottomRightRadius = '4px';
     this.el.style.borderBottomLeftRadius = '4px';
     if (this.animation){
       this.animation.cancel();
     }
 
-    this.animation = this.el.animate({
+    this.animation = this.content.animate({
+      opacity: ['1','0'],
       height: [startHeight, endHeight]
     },{
       duration: 200,
@@ -86,8 +86,8 @@ class Dropdown{
   }
   expand() {
     this.isExpanding = true;
-    const startHeight = `${this.el.offsetHeight}px`;
-    const endHeight = `${this.summary.offsetHeight + this.content.offsetHeight}px`;
+    const startHeight = `0px`;
+    const endHeight = `${this.content.offsetHeight}px`;
     this.el.style.borderBottomRightRadius = '0px';
     this.el.style.borderBottomLeftRadius = '0px';
     
@@ -95,7 +95,8 @@ class Dropdown{
       this.animation.cancel();
     }
     
-    this.animation = this.el.animate({
+    this.animation = this.content.animate({
+      opacity: ['0','1'],
       height: [startHeight, endHeight]
     }, {
       duration: 200,
