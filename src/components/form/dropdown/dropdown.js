@@ -1,4 +1,4 @@
-import './date-dropdown/date-dropdown'
+import './date-dropdown/date-dropdown';
 class Dropdown{
   constructor(el) {
     this.el = el;
@@ -13,6 +13,8 @@ class Dropdown{
     this.isExpanding = false;
     this.summary.addEventListener('click', (e) =>
       this.onClick(e));
+    this.summary.addEventListener('linkedDropdownClick', (e) =>
+      this.onLinkedDropdownClick(e));
     document.addEventListener('click', (e) => {
       if (!e.target.closest('details')) this.shrink(); 
     });
@@ -27,16 +29,24 @@ class Dropdown{
   }
   onClick(e) {
     e.preventDefault();
+    const datepickers = this.el.parentNode.parentNode.querySelectorAll('.datepicker');
     if (this.el.querySelectorAll('.item-container>*').length < 1){ // Отключение раскрытия элемента, если у него нет потомков.
-      let clickevent = new Event('click');
+      let clickevent = new Event('linkedDropdownClick');
+      datepickers[0].classList.remove('active');
+      datepickers[1].classList.add('active');
       const firstDropdown = this.el.parentNode.parentNode.querySelector('.dropdown>summary');
       firstDropdown.dispatchEvent(clickevent);
       return;
     }
+    datepickers[0].classList.add('active');
+    datepickers[1].classList.remove('active');
     if (this.isClosing || !this.el.open){
       this.open();
-    } else {
-      this.shrink();
+    }
+  }
+  onLinkedDropdownClick(e){
+    if (this.isClosing || !this.el.open){
+      this.open();
     }
   }
   onItemPlusClick(e){

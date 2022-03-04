@@ -26,9 +26,6 @@
     box-sizing: border-box;
     border-radius: 4px;
   }
-  &__item-container{
-    margin-left: -.1rem;
-  }
   &__item-content{
     padding:0 1.5rem;
     line-height: 4rem;
@@ -90,11 +87,10 @@ summary{
 .item-container{
   position: absolute;
   top:100%;
-  left:0;
+  left:-1px;
   z-index: 2;
   user-select: none;
   cursor:default;
-  max-height:20rem;
   width:32rem;
   display: flex;
   flex-direction: column;
