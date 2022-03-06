@@ -15,8 +15,12 @@ class Dropdown{
       this.onClick(e));
     this.summary.addEventListener('linkedDropdownClick', (e) =>
       this.onLinkedDropdownClick(e));
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('details')) this.shrink(); 
+    document.addEventListener('click', (e) => { //Проверка на то, что клик произошел точно не на наш элемент
+      let isADropdown = (e.target.closest('details')!=null);
+      let isRightDropdown = (e.target.closest('details')==this.el);
+      let isTargetInCurrentGroup = ((e.target.closest('.date-dropdown')!=null) && e.target.closest('.date-dropdown') ==this.el.parentNode.parentNode);
+      let isthisMonthChoosing = (e.target.classList.contains('month') || e.target.classList.contains('year') || e.target.classList.contains('decade')) //Фикс бага с сокрытием датапикера при изменении месяца 
+      if (!(isTargetInCurrentGroup || isthisMonthChoosing || (isADropdown && isRightDropdown))) this.shrink();
     });
     this.plusBtns.forEach((el) => {
       el.addEventListener('click', (e) => 
@@ -38,18 +42,18 @@ class Dropdown{
       firstDropdown.dispatchEvent(clickevent);
       return;
     }
-    datepickers[0].classList.add('active');
+    datepickers[0].classList.add('active'); //Показываем какой календарь открывать если нажата основная кнопка
     datepickers[1].classList.remove('active');
     if (this.isClosing || !this.el.open){
       this.open();
     }
   }
   onLinkedDropdownClick(e){
-    if (this.isClosing || !this.el.open){
+    if (this.isClosing || !this.el.open){ //Событие при нажатии на альт. дропдаун
       this.open();
     }
   }
-  onItemPlusClick(e){
+  onItemPlusClick(e){ //Изменение плейсхолдера на стандартном дропдауне
     let classes = e.target.className;
     if (classes.indexOf('btn_disabled')>0) return;
     const item = e.target.parentNode;
@@ -59,7 +63,7 @@ class Dropdown{
     const plusBtn = item.querySelector('.plus-btn');
     item.querySelector('.amount').innerHTML = `${++itemAmount}`;
     if (itemAmount === 1) minusBtn.classList.toggle('btn_disabled'); 
-    if (itemAmount === 4) plusBtn.classList.toggle('btn_disabled');
+    if (itemAmount === 4) plusBtn.classList.toggle('btn_disabled'); 
     this.placeholderUpdate();
   }
   onItemMinusClick(e){
@@ -75,7 +79,7 @@ class Dropdown{
     if (itemAmount === 3) plusBtn.classList.toggle('btn_disabled');
     this.placeholderUpdate();
   }
-  shrink() {
+  shrink() { //Сворачивание скрытого контента
     this.isClosing = true;
     const startHeight = `${this.content.offsetHeight}px`;
     const endHeight = `0px`;
@@ -101,7 +105,7 @@ class Dropdown{
     this.el.open = true;
     window.requestAnimationFrame(() => this.expand());
   }
-  expand() {
+  expand() {//Развертывание скрытого контента
     this.isExpanding = true;
     const startHeight = `0px`;
     const endHeight = `${this.content.offsetHeight}px`;
@@ -131,7 +135,7 @@ class Dropdown{
 
     this.el.style.height = this.el.style.overflow = '';
   }
-  placeholderUpdate(){
+  placeholderUpdate(){ //Обновление плейсхолдера в зависимости от цифр контента
     const items = [...this.el.querySelectorAll('.item-content')];
     const amounts = [...this.el.querySelectorAll('.amount')];
     let placeholderWords = items.map(o => o.innerHTML);
@@ -163,6 +167,6 @@ class Dropdown{
     if(this.summary.innerHTML === '') this.summary.innerHTML = this.defaultplaceholder;
   }
 }
-document.querySelectorAll('.dropdown').forEach((el) => {
+document.querySelectorAll('.dropdown').forEach((el) => { //Инициализация всех дропдаунов
   new Dropdown(el);
 });

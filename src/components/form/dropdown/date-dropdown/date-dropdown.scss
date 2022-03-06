@@ -1,3 +1,4 @@
+@use '../../../variables.scss' as var;
 @import "../../../../../node_modules/vanillajs-datepicker/sass/datepicker.scss";
 .date-dropdown{
   display: flex;
@@ -5,16 +6,120 @@
   justify-content: space-between;
   &>.label>.dropdown{
     width:15rem;
+    &>.item-container{
+      margin-top:0.556rem;
+      border: 1px var.$dark_shade25;
+      border-radius: .4rem; // TODO(Avircut): Add Apply Button
+      box-sizing: border-box; // FIXME(Avircut): Fix left-top corner calendar move
+      box-shadow: 0 1rem 2rem var.$dark_shade5; // TODO(Avircut): Add Locale
+    }
   }
 }
 .datepicker{
-  &-picker{
-    display: block;
+  padding: 0;
+  &-picker span{
+    flex:0;
   }
   &-dropdown{
     position: relative;
   }
+  &-main{
+    padding: 0;
+    margin-top:3rem;
+   // max-height: 24rem;
+  }
   &-grid{
     width: 100%;
+    justify-content: center;
   }
+  &-header{
+    margin-top:2rem;
+  }
+  .day.prev,.day.next{
+    color:var.$dark_shade25;
+  }
+  .prev-btn{
+    font-family: 'Material Icons';
+    font-size: 2.4rem;
+    line-height: 2.04rem;
+    color:var.$primary;
+    width: 2.4rem;
+    height:2.4rem;
+    content:'arrow_back';
+    margin-left:2rem;
+  }
+  .next-btn{
+    font-family: 'Material Icons';
+    font-size: 2.4rem;
+    line-height: 2.04rem;
+    color:var.$primary;
+    width: 2.4rem;
+    height:2.4rem;
+    content:'arrow_forward';
+    margin-right:2rem;
+  }
+  .button{
+    height: 2.3rem;
+  }
+  .view-switch{
+    font-size:1.9rem;
+    font-family: Montserrat, Arial, sans-serif;
+    line-height: 2.3rem;
+    color:var.$dark_shade100;
+    padding:0;
+  }
+  .dow{
+    color:var.$primary;
+    font-weight: 700;
+  }
+  .days-of-week{
+    justify-content: center;
+  }
+  .datepicker-cell{
+    font-weight: 400;
+    position: relative;
+  }
+  .dow,&-view .days .datepicker-cell{
+    width:4rem;
+    flex-basis: 12.58%;
+    height:4rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .range-end,.range-start{
+    background:var.$primary_grad;
+    font-weight: 700;
+  }
+  .today{
+    font-weight: 700;
+  }
+  .range-bg::before{
+    content:'';
+    width: 4rem;
+    border-radius: 0;
+    opacity: .25;
+    background: var.$primary_grad;
+    position: absolute;
+    top:0;
+    height:4rem;
+  }
+  .range-bg.range-start::before{
+    width: 2rem;
+    right:0;
+  }
+  .range-bg.range-end::before{
+    width: 2rem;
+    left:0;
+  }
+  .range{
+    background: transparent;
+  }
+  .today{
+    background: var.$secondary_grad;
+  }
+
 }
